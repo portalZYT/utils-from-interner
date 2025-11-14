@@ -1,0 +1,3 @@
+这是一个用AppJs做控制器，用zepto轻量级框架结合LocalStorage本地存储编写的一个事务管理App
+用cordovad打包成apk可执行文件
+

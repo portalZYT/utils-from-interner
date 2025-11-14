@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>高效事务管理</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/app.min.css">
+    <link rel="stylesheet" href="css/todo.css">
+    <style></style>
+</head>
+
+<body>
+    <!-- 四象限页面........................ -->
+    <div class="app-page" data-page="home">
+        <div class="app-topbar" style="background-color:blue">
+            <div class="my-img"><img src="img/toux.png" alt="请登录" width="45%" height="70%"></div>
+            <div class="my-data"></div>
+            <div class="my-add"><img src="img/add.png"></div>
+        </div>
+        <div class="app-content" id="home">
+            <div class="app-section">
+                <div>
+                    <span style="font-size:20px"> 我的项目主题列表：<span style="font-size:12px;color:gray">(点击主题查看具体内容)</span></span>
+                    <div>
+                        <span class="feiLeiIcon" style="background-color:green"></span>
+                        <span class="feiLeiTitle">未开始任务</span>
+                        <span class="feiLeiIcon" style="background-color:red"></span>
+                        <span class="feiLeiTitle">进行中任务</span>
+                        <span class="feiLeiIcon" style="background-color:blue"></span>
+                        <span class="feiLeiTitle">已完成任务</span>
+                    </div>
+                </div>
+                <div id="impUrg"></div>
+            </div>
+            <div id="allClear"><img src="img/clear.png" width="50px" height="55px"></div>
+        </div>
+    </div>
+    <!-- 四象限页面........................ -->
+    <!-- 我的私事页面...................... -->
+    <div class="app-page" data-page="second">
+        <div class="app-topbar" style="background-color:blue">
+            <img src="img/toux.png" alt="请登录" class='topimg' width="15%" height="80%" style="border-radius:15%">
+            <p style="position:absolute;top:30%;left:40%;font-size:20px">我的私事</p>
+        </div>
+        <div class="app-content" id="secondC">
+            <ul class="app-list ">
+                <li id="fourQuadrant">项目主题列表</li>
+                <li id="nostart">未开始项目查看</li>
+                <li id="ongoing">正在进行中项目查看</li>
+                <li id="accomplish">已完成项目查看</li>
+            </ul>
+        </div>
+    </div>
+    <!-- 我的私事页面...................... -->
+    <!-- 未开始页面...................... -->
+    <div class="app-page" data-page="nostart">
+        <div class="app-topbar" style="background-color:blue">
+            <img src="img/toux.png" alt="请登录" class='topimg' width="15%" height="80%" style="border-radius:15%">
+            <p style="position:absolute;top:30%;left:35%;font-size:20px">未开始的任务</p>
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <div>未开始的任务列表：<span style="font-size:12px;color:gray">(点击标题查看具体内容)</span></div>
+                <div class='insertContent'></div>
+            </div>
+        </div>
+    </div>
+    <!-- 正在进行中页面...................... -->
+    <div class="app-page" data-page="ongoing">
+        <div class="app-topbar" style="background-color:blue">
+            <img src="img/toux.png" alt="请登录" class='topimg' width="15%" height="80%" style="border-radius:15%">
+            <p style="position:absolute;top:25%;left:30%;font-size:20px">正在进行中的任务</p>
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <div>正在进行中的任务列表：<span style="font-size:12px;color:gray">(点击标题查看具体内容)</span></div>
+                <div class='insertContent'></div>
+            </div>
+        </div>
+    </div>
+    <!-- 已完成页面...................... -->
+    <div class="app-page" data-page="accomplish">
+        <div class="app-topbar" style="background-color:blue">
+            <img src="img/toux.png" alt="请登录" class='topimg' width="15%" height="80%" style="border-radius:15%">
+            <p style="position:absolute;top:30%;left:35%;font-size:20px">已完成的任务</p>
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <div>已完成的任务列表：<span style="font-size:12px;color:gray">(点击标题查看具体内容)</span></div>
+                <div class='insertContent'></div>
+            </div>
+        </div>
+    </div>
+    <!-- 添加任务页面...................... -->
+    <div class="app-page" data-page="addTask">
+        <div class="app-topbar" style="background-color:blue">
+            <img src="img/toux.png" alt="请登录" class='topimg' width="15%" height="80%" style="border-radius:25%">
+            <p style="color:white;font-size:20px;position:absolute;top:30%;left:35%">请添加任务</p>
+            <img src="img/dui.png" class='duiLogo'>
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <p style="color:gray">请输入任务主题：</p>
+                <div class="app-input">
+                    <input style="font-size:16px" class="taskTitle"></input>
+                </div>
+            </div>
+            <div class="app-section">
+                <p style="color:gray">请输入任务内容：</p>
+                <div class="app-input">
+                    <textarea style="font-size:16px;line-height:20px;color:blue" class="taskContent"></textarea>
+                    <!-- <div contenteditable="true" style="font-size:16px;line-height:20px" class="taskContent"></div> -->
+                </div>
+            </div>
+            <div class="app-section">
+                <div class="app-button taskTimeStr"><span>SetStartTime:</span><span class='startTimeShow'></span></div>
+            </div>
+            <div class="app-section">
+                <div class="app-button taskTimeFin"><span>SetFinishTime:</span><span class='finishTimeShow'></span></div>
+            </div>
+            <div class="app-section">
+                <div class="app-list">
+                    <li style="font-size:14px">If not set time,defaultStartTime:</li>
+                    <li class='DefaultStartTime' style="color:blue">rerer</li>
+                    <li style="font-size:14px">If not set time,defaultFinishTime:</li>
+                    <li class='DefaultFinishTime' style="color:blue">weewe</li>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 添加任务页面...................... -->
+    <!-- 选择日期页面...................... -->
+    <div class="app-page" data-page="calender">
+        <div class="app-topbar" style="background-color:blue">
+            <img src="img/toux.png" alt="请登录" class='topimg' width="16%" height="80%" style="border-radius:25%">
+            <p style="color:white;font-size:20px;position:absolute;top:30%;left:25%" class="checkCalenderTitle">请选择任务时间</p>
+            <img src="img/finish.png" class="finishLogo" style="position:absolute;top:5%;right:1%">
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <div class="my-table">
+                    <div class="my-bar">
+                        <div class="app-button btn-left">&lt;</div>
+                        <div class="center">&nbsp;</div>
+                        <div class="app-button btn-right">&gt;</div>
+                    </div>
+                    <div class="my-row">
+                        <div>日</div>
+                        <div>一</div>
+                        <div>二</div>
+                        <div>三</div>
+                        <div>四</div>
+                        <div>五</div>
+                        <div>六</div>
+                    </div>
+                    <div class="my-row curr"></div>
+                </div>
+            </div>
+            <div class="app-section">
+                <div class="my-bar">
+                    <div class="app-button btn-htimeleft">&lt;</div>
+                    <div class="timecenterh">&nbsp;</div>
+                    <div class="app-button btn-htimeright">&gt;</div>
+                </div>
+            </div>
+            <div class="app-section">
+                <div class="my-bar">
+                    <div class="app-button btn-mtimeleft">&lt;</div>
+                    <div class="timecenterm">&nbsp;</div>
+                    <div class="app-button btn-mtimeright">&gt;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 选择日期页面...................... -->
+    <!-- 修改页面.......................... -->
+    <div class="app-page" data-page="modify">
+        <div class="app-topbar" style="background-color:blue">
+            <img src="img/toux.png" alt="请登录" class='topimg' width="16%" height="80%" style="border-radius:25%">
+            <p style="color:white;font-size:20px;position:absolute;top:25%;left:40%" class="checkCalenderTitle">修改项目</p>
+            <div style="position:absolute;top:5%;right:3%">
+                <div id="modify-back" style="font-size:12px">&lt;&lt;返回上一页</div>
+                <div class="modify-finish">修改完成 </div>
+            </div>
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <p style="color:gray">请输入修改主题：</p>
+                <div class="app-input">
+                    <input style="font-size:16px" class="modifyTitle"></input>
+                </div>
+            </div>
+            <div class="app-section">
+                <p style="color:gray">请输入修改内容：</p>
+                <div class="app-input">
+                    <textarea style="font-size:16px;line-height:20px;color:blue;height:160px" class="modifyContent"></textarea>
+                </div>
+            </div>
+            <div class="app-section">
+                <div class="app-button modifyTimeStr"><span style="font-size:12px">ModifyStartTime:</span><span class="modifyStart"></span></div>
+            </div>
+            <div class="app-section">
+                <div class="app-button modifyTimeFin"><span style="font-size:12px">ModifyFinishTime:</span><span class="modifyFinish"></span></div>
+            </div>
+
+        </div>
+    </div>
+    <!-- 修改页面.......................... -->
+    <!-- 修改日期页面.................................................... -->
+    <div class="app-page" data-page="modifyCalender">
+        <div class="app-topbar" style="background-color:blue">
+            <img src="img/toux.png" alt="请登录" class='topimg' width="16%" height="80%" style="border-radius:25%">
+            <p style="color:white;font-size:20px;position:absolute;top:30%;left:25%" class="checkCalenderTitle">请修改任务时间</p>
+            <img src="img/finish.png" class="finishLogo" style="position:absolute;top:5%;right:1%">
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <div class="my-table">
+                    <div class="my-bar">
+                        <div class="app-button btn-left">&lt;</div>
+                        <div class="center">&nbsp;</div>
+                        <div class="app-button btn-right">&gt;</div>
+                    </div>
+                    <div class="my-row">
+                        <div>日</div>
+                        <div>一</div>
+                        <div>二</div>
+                        <div>三</div>
+                        <div>四</div>
+                        <div>五</div>
+                        <div>六</div>
+                    </div>
+                    <div class="my-row curr"></div>
+                </div>
+            </div>
+            <div class="app-section">
+                <div class="my-bar">
+                    <div class="app-button btn-htimeleft">&lt;</div>
+                    <div class="timecenterh">&nbsp;</div>
+                    <div class="app-button btn-htimeright">&gt;</div>
+                </div>
+            </div>
+            <div class="app-section">
+                <div class="my-bar">
+                    <div class="app-button btn-mtimeleft">&lt;</div>
+                    <div class="timecenterm">&nbsp;</div>
+                    <div class="app-button btn-mtimeright">&gt;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 查看页面...................................... -->
+    <div class="app-page" data-page="chanKan">
+        <div class="app-topbar" style="background-color:blue">
+            <img src="img/toux.png" alt="请登录" class='topimg' width="16%" height="80%" style="border-radius:25%">
+            <p style="color:white;font-size:20px;position:absolute;top:20%;left:65%" class="chanKanBack">返回上一页</p>
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <p style="color:gray">标题：</p>
+                <div class='chaKanTitle' style="width:100%;word-wrap:break-word;color:blue"></div>
+            </div>
+            <div class="app-section">
+                <p style="color:gray">内容：</p>
+                <div class='chaKanContent' style="width:100%;word-wrap:break-word;color:blue"></div>
+            </div>
+            <div class="app-section">
+                <div class="app-list">
+                    <li><span style="font-size:14px;color:grey">开始时间：</span><span class="chaKanStartTime"></span></li>
+                    <li><span style="font-size:14px;color:grey">结束时间：</span><span class="chaKanFinishTime"></span></li>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.min.js"></script>
+    <script src="js/zepto.js"></script>
+    <script src="js/todo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>资源列表</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding content-ng ccWaterMarker [options]="optionsWater" [zIndex]="10">
+  <button ion-button block color="primary"
+          *ngFor="let img of imgUrlList"
+          (click)="viewImg(img)">查看
+    {{img.type}}
+    {{img.title}}
+  </button>
+  <div *ngIf="ddd"></div>
+</ion-content>

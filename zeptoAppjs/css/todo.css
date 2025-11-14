@@ -1,0 +1,140 @@
+
+.app-topbar{
+    position: relative;
+}
+
+.app-topbar::after {
+    content: '';
+    clear: both
+}
+
+.my-img {
+    float: left;
+    width: 25%;
+    height: 100%;
+}
+
+.my-img>img {
+    margin-top: 8px;
+    margin-left: 5px
+}
+
+.my-data {
+    float: left;
+    width: 50%;
+    height: 100%;
+    font-size: 16px;
+    text-align: center;
+    line-height: 55px;
+   
+}
+
+.my-add {
+    float: left;
+    width: 25%;
+    height: 100%;
+    text-align: right;
+}
+
+.my-add>img {
+    margin-top: 8px;
+    margin-right: 5px
+}
+
+.topimg {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.duiLogo{
+    position: absolute;
+    right:1%;
+    top: 6%
+}
+
+.my-bar {
+    font-size: 20px;
+    text-align: center;
+}
+
+.my-bar::after {
+    content: '';
+    clear: both;
+    display: block
+}
+
+.my-bar div {
+    float: left;
+    width: calc(60% - 30px);
+}
+
+.my-bar div:first-child {
+    width: 20%;
+    text-align: left;
+    padding: 0 5px
+}
+
+.my-bar div:last-child {
+    width: 20%;
+    text-align: right;
+    padding: 0 5px
+}
+
+.my-row {
+    display: block;
+    overflow: hidden;
+    text-align: center
+}
+
+.my-row::after {
+    content: '';
+    clear: both
+}
+
+.my-row div {
+    margin: 0;
+    padding: 1% 0;
+    float: left;
+    width: 14.186%
+}
+.cdiv{
+    border-bottom: 1px solid #ccc;
+   padding: 10px
+}
+.ctitle{
+    color:blue;
+    font-size: 18px;
+    margin-bottom: 5px
+}
+.cTime{
+    color: grey;
+    font-size: 14px
+}
+
+#allClear{
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    right: 0
+}
+.deleteButton,
+.modifyButton{
+    margin: 3px;
+}
+.modify-finish{
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 16px;
+   margin-top: 1px;
+}
+.feiLeiIcon{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+.feiLeiTitle{
+    display: inline-block;
+    color: grey;
+    font-size: 14px
+}

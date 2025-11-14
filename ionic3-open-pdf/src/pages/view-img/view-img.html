@@ -1,0 +1,9 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{img?.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding ccWaterMarker [options]="optionsWater" [zIndex]="10">
+  <img [src]="img?.url" style="width: 100%;height:auto" alt="">
+</ion-content>
