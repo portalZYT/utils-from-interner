@@ -9,3 +9,5 @@ iOS通itms-services://协议安装ipa，省去https环境的搭建
 ### zeptoAppjs
 这是一个用AppJs做控制器，用zepto轻量级框架结合LocalStorage本地存储编写的一个事务管理App
 用cordovad打包成apk可执行文件
+### pdf-signaturer
+`PDF` 在线签名的简单实现
